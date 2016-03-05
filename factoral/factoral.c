@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int factoral(int x) {
+long factoral(int x) {
   if(x == 1) {
     return x;
   }
@@ -10,16 +10,20 @@ int factoral(int x) {
 
 int main(int argc, char *argv[]) {
   int count;
-  int factoral_start;
-  int computed_factoral;
+  long factoral_start;
+  long computed_factoral;
 
   if(argc > 1) {
-    factoral_start = atoi(argv[1]);
+    factoral_start = strtol(argv[1], NULL, 10);
+  }
+
+  if(factoral_start == 0) {
+    puts("Invalid value for computing a factoral");
+    return 1;
   }
 
   computed_factoral = factoral(factoral_start);
-
-  printf("Factoral of %d is %d\n", factoral_start, computed_factoral);
+  printf("Factoral of %ld is %ld\n", factoral_start, computed_factoral);
 
   return 0;
 }
