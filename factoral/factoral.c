@@ -9,12 +9,15 @@ long factoral(int x) {
 }
 
 int main(int argc, char *argv[]) {
-  int count;
   long factoral_start;
   long computed_factoral;
 
   if(argc > 1) {
     factoral_start = strtol(argv[1], NULL, 10);
+  }
+  else {
+    puts("You must provide a value to compute the factoral!");
+    return 1;
   }
 
   if(factoral_start == 0) {

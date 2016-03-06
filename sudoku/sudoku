@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require_relative 'lib/sudoku'
+
+# NOTE this assumes that we're only trying to read a single sudoku puzzle from stdin
+# This would require refactoring to do more than that
+puzzle = []
+ARGF.each do |line|
+  puzzle << line
+end
+
+unless puzzle.size == Sudoku::Board::SIZE
+  puts "Sudoku puzzles must be #{Sudoku::SIZE} lines"
+  exit 1
+end
+
+board = Sudoku::Board.new(puzzle)
+board.solve!
+puts board.to_grid

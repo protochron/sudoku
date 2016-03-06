@@ -1,0 +1,21 @@
+require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
+
+task default: :'test:spec'
+task test: :'test:spec'
+task spec: :test
+
+desc 'Run tests'
+namespace :test do
+  RSpec::Core::RakeTask.new(:spec) do |task|
+    task.rspec_opts = '--tag ~@slow'
+  end
+
+  desc 'Run all tests including the performace tests'
+  RSpec::Core::RakeTask.new(:slow)
+end
+
+desc 'Run rubocop'
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.patterns = ['lib/**/*.rb']
+end
